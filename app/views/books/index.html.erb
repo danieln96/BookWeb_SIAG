@@ -1,0 +1,22 @@
+<div align='center'>
+    <%= will_paginate %>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Kategoria</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @books.each do |book| %>
+        <tr>
+            <td><%= link_to "#{book.title}", book_path(book), class: "btn btn-xl btn-primary" %></td>
+            <td><%= book.author %></td>
+            <td><%= book.genre %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+    <%= will_paginate %>
+</div>
