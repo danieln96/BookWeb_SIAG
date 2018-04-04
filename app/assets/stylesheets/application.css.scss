@@ -1,2 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+h1 {
+  font-size: 84px;
+  //background: -webkit-linear-gradient(#884dff, #e6e600);
+  //-webkit-background-clip: text;
+  //-webkit-text-fill-color: transparent;
+}
+body {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    height: 100%;
+     margin: 0;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     color: #0d0d0d;
+}

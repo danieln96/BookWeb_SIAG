@@ -1,12 +1,11 @@
-<<<<<<< HEAD
-<h1>xDDDDDDDDDDDDDDDDDDDDDDDDDD</h1>
-<h2>OOOOOOOOOPPPPPPPPPPPPP</h2>
+<% if current_user %>
+<div><%= link_to "Wyloguj", logout_path, method: :delete %></div>
+<% else %>
+<div><%= link_to "Utwórz konto", new_user_path %></div>
+<div><%= link_to "Logowanie", login_path %></div>
+<% end %>
+<div><%= link_to "Lista książek", books_path %></div>
 
 
-<%= link_to "Utwórz konto", new_user_path %>
-<%= link_to "Logowanie", login_path %>
-<%= link_to "Lista książek", books_path %>
-=======
-<h1>DDDDDDD</h1>
-<h2>OOOOOOOOOPPPPPPPPPPPPP/h2>
->>>>>>> 31810f394d70dd900c24ad2b5aa04671b06e1da3
+<h1>BookWeb - Super Firma!</h1>
+<h3>Projekt zespołowy</h3>
