@@ -15,6 +15,8 @@ end
 
 a = User.new
 a.email = "admin@example.com"
-a.password_digest = "password"
+a.password_digest = "admos384"
 a.username = "admin"
+a.admin = true
 a.save
+puts "konto admina login admin@example.com haslo: admos384"

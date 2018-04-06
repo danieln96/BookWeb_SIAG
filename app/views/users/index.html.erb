@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+    <div><%= link_to "Użytkownik <b>#{user.username}</b>".html_safe, user_path(user.id) %></div>
+    <div><%= "Ostatnia opinia książki #{user.opinions.last.book.title} oceniona na #{user.opinions.last.rate}/10" %> </div>
+    <div><%= "#{user.opinions.last.description}" %></div>
+<% end %>

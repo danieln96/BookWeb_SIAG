@@ -5,5 +5,10 @@
 
 
 <% @book.opinions.each do |opinion| %>
-<div><%= "#{opinion.user.username} ocenił #{opinion.rate}/10 i napisał tak: #{opinion.description}" %></div>
+<div>
+    <%= "<b>#{opinion.user.username}</b> ocenił #{opinion.rate}/10:<i> #{opinion.description}</i>".html_safe %>
+    <% if  current_user && current_user.admin? %>
+        <%= link_to 'Usuń', opinion_path(opinion.id), method: :delete, class: "btn btn-xs btn-danger" %>
+    <% end %>
+</div>
 <% end %>

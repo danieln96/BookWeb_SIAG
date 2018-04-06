@@ -19,6 +19,14 @@ class OpinionsController < ApplicationController
        @opinions = Opinion.where(book_id: @book.id) 
        @opinions = @opinions.paginate(page: params[:page], per_page: 3)
     end
+    def destroy
+        @opinion = Opinion.find(params[:id])
+        bid = @opinion.book_id
+        @opinion.destroy
+        flash[:danger] = "Usunięto opinię"
+        redirect_to book_path(bid)
+        
+    end
     def index
         @opinions = Opinion.where(user_id: session[:user_id])
     end

@@ -1,6 +1,6 @@
 <h1>Opinie użytkownika <%= @user.username %></h1>
 <% @user.opinions.each do |opinion| %>
-    <div><%= opinion.book.title %></div>
+    <div><%= link_to "#{opinion.book.title}", book_path(opinion.book.id) %></div>
     <div><%= opinion.rate %>/10</div>
     <div><%= opinion.description %></div>
 <% end %>

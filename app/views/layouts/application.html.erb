@@ -7,6 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if current_user %>
+<%= link_to "Wyloguj", logout_path, method: :delete, class: "btn btn-xs btn-danger" %>
+<%= link_to 'Twój profil', user_path(current_user), class: "btn btn-xs btn-success" %>
+<% else %>
+<%= link_to "Utwórz konto", new_user_path, class: "btn btn-xs btn-success" %>
+<%= link_to "Logowanie", login_path, class: "btn btn-xs btn-success" %>
+<% end %>
+<%= link_to 'Strona główna', root_path, class: "btn btn-xs btn-success" %>
+<%= link_to "Lista książek", books_path, class: "btn btn-xs btn-success" %>
+<%= link_to 'Użytkownicy', users_path, class: "btn btn-xs btn-success" %>
+
 <div class="container">
   <%= render 'layouts/messages' %>
   <%= yield %>

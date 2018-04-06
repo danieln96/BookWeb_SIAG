@@ -1,11 +1,2 @@
-<% if current_user %>
-<div><%= link_to "Wyloguj", logout_path, method: :delete %></div>
-<% else %>
-<div><%= link_to "Utwórz konto", new_user_path %></div>
-<div><%= link_to "Logowanie", login_path %></div>
-<% end %>
-<div><%= link_to "Lista książek", books_path %></div>
-
-
 <h1>BookWeb - Super Firma!</h1>
 <h3>Projekt zespołowy</h3>
