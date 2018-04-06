@@ -1,0 +1,9 @@
+<div><%= @book.title %></div>
+<div><%= @book.author %></div>
+<div><%= @book.genre %></div>
+<%= render partial: "form", locals: {opinion: @opinion} %>
+
+
+<% @book.opinions.each do |opinion| %>
+<div><%= "#{opinion.user.username} ocenił #{opinion.rate}/10 i napisał tak: #{opinion.description}" %></div>
+<% end %>

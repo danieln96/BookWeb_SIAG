@@ -19,7 +19,8 @@ class BooksController < ApplicationController
    end
    def show
        @book = Book.find(params[:id])
-       @book.save
+       @opinion = Opinion.new
+       cookies[:bookid] = @book.id
    end
    def edit
        @book = Book.find(params[:id])
