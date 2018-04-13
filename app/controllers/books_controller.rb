@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
    before_action :require_admin, only: [:destroy, :edit, :update, :new, :create]
-   ##
-   #Wyświetla listę książek. Korzysta też z filtracji i wyszukiwania
+   before_action :set_book, only: [:show, :update, :edit, :destroy]
    def index
        @books = Book.paginate(page: params[:page], per_page: 10)
    end
@@ -18,15 +17,18 @@ class BooksController < ApplicationController
        end
    end
    def show
-       @book = Book.find(params[:id])
+
        @opinion = Opinion.new
+       if !@book.opinions.empty?
+           @average = 0
+           @book.opinions.each { |o| @average += o.rate }
+           @average = @average / @book.opinions.size
+       end
        cookies[:bookid] = @book.id
    end
    def edit
-       @book = Book.find(params[:id])
    end
    def update
-       @book = Book.find(params[:id])
        if @book.update(book_param)
           flash[:success] = "Pozycja została edytowana"
           redirect_to books_path
@@ -35,7 +37,6 @@ class BooksController < ApplicationController
        end
    end
    def destroy
-       @book = Book.find(params[:id])
        if @book.destroy
          flash[:danger] = "Pozyzja została usunięta"
          redirect_to books_path
@@ -44,6 +45,16 @@ class BooksController < ApplicationController
        end     
    end
    private
+   def set_book
+      begin
+         @book = Book.find(params[:id])
+      rescue
+         flash[:danger] = "Coś sknociłeś"
+         redirect_to root_path
+      ensure
+         
+      end
+   end
    def book_param
       params.require(:book).permit(:title, :author, :genre)
    end

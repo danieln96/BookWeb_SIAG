@@ -1,14 +1,17 @@
 <div><%= @book.title %></div>
 <div><%= @book.author %></div>
 <div><%= @book.genre %></div>
+<div><%= "Średnia #{@average}" %></div>
 <%= render partial: "form", locals: {opinion: @opinion} %>
 
 
 <% @book.opinions.each do |opinion| %>
 <div>
-    <%= "<b>#{opinion.user.username}</b> ocenił #{opinion.rate}/10:<i> #{opinion.description}</i>".html_safe %>
-    <% if  current_user && current_user.admin? %>
-        <%= link_to 'Usuń', opinion_path(opinion.id), method: :delete, class: "btn btn-xs btn-danger" %>
+    <% if opinion.description %>
+        <%= "<b>#{opinion.user.username}</b> ocenił #{opinion.rate}/10:<i> #{opinion.description}</i>".html_safe %>
+        <% if  current_user && current_user.admin? %>
+            <%= link_to 'Usuń', opinion_path(opinion.id), method: :delete, class: "btn btn-xs btn-danger" %>
+        <% end %>
     <% end %>
 </div>
 <% end %>
