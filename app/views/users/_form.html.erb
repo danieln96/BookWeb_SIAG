@@ -8,7 +8,7 @@
                    <label> Nazwa użytkownika </label>
                 </div>
                 <div class="col-sm-8">
-                    <%= f.text_field :username, class: "form-control", placeholder: "podaj nick", autofocus: true %>
+                    <%= f.text_field :username, class: "form-control", placeholder: "podaj nick", autofocus: true, id: "username" %>
                 </div>
             </div>
             <div class="form-group">
@@ -16,7 +16,7 @@
                     <%= f.label :email %>
                 </div>
                 <div class="col-sm-8">
-                    <%= f.email_field :email, class: "form-control", placeholder: "podaj email" %>
+                    <%= f.email_field :email, class: "form-control", placeholder: "podaj email", id: "email" %>
                 </div>
             </div>
             <div class="form-group">
@@ -24,12 +24,12 @@
                    <label> Hasło </label>
                 </div>
                 <div class="col-sm-8">
-                    <%= f.password_field :password, class: "form-control", placeholder: "podaj hasło" %>
+                    <%= f.password_field :password, class: "form-control", placeholder: "podaj hasło", id: "password" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <%= f.submit(@user.new_record? ? "Rejestruj" : "Edytuj Konto", class: 'btn btn-primary btn-lg') %>
+                    <%= f.button(@user.new_record? ? "Rejestruj" : "Edytuj Konto", class: 'btn btn-primary btn-lg', id: "submit") %>
                 </div>
             </div>
             <% end %>

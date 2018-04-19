@@ -7,7 +7,7 @@
                     <label>Tytuł</label>
                 </div>
                 <div class="col-sm-8">
-                    <%= f.text_field :title, class: "form-control", placeholder: "Tytuł", autofocus: true %>
+                    <%= f.text_field :title, class: "form-control", placeholder: "Tytuł", autofocus: true, id: "title" %>
                 </div>
             </div>
             <div class="form-group">
@@ -15,7 +15,7 @@
                     <label>Autor</label>
                 </div>
                 <div class="col-sm-8">
-                    <%= f.text_field :author, class: "form-control", placeholder: "Autor", autofocus: true %>
+                    <%= f.text_field :author, class: "form-control", placeholder: "Autor", autofocus: true, id: "author" %>
                 </div>
             </div>
             <div class="form-group">
@@ -23,12 +23,12 @@
                     <label>Gatunek</label>
                 </div>
                 <div class="col-sm-8">
-                    <%= f.text_field :genre, class: "form-control", placeholder: "Gatunek", autofocus: true %>
+                    <%= f.text_field :genre, class: "form-control", placeholder: "Gatunek", autofocus: true, id: "genre" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <%= f.submit "Dodaj", class: 'btn btn-primary btn-lg' %>
+                    <%= f.button "Dodaj", class: 'btn btn-primary btn-lg', id: "submit" %>
                 </div>
             </div>
             <% end %>
