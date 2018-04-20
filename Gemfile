@@ -48,6 +48,6 @@ group development:test do
     gem 'rspec-rails', '~> 3.7'
 end
 
-group :production do
+group production do
   gem 'pg'#, '~> 0.18.4'
 end
