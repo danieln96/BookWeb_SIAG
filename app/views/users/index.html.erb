@@ -1,3 +1,4 @@
+<%= will_paginate %>
 <% @users.each do |user| %>
     <div><%= link_to "Użytkownik <b>#{user.username}</b>".html_safe, user_path(user.id) %></div>
     <% if !user.opinions.empty? %>

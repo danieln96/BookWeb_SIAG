@@ -38,7 +38,7 @@ class UsersController < ApplicationController
    end
     def index
         @users = User.where.not(admin: true)
-        @users = @users.paginate(page: params[:page], per_page: 20)
+        @users = @users.paginate(page: params[:page], per_page: 10)
     end
     def getadmin
         @user = User.find(params[:id])

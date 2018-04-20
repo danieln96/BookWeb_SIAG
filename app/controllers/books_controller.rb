@@ -17,7 +17,6 @@ class BooksController < ApplicationController
        end
    end
    def show
-
        @opinion = Opinion.new
        if !@book.opinions.empty?
            @average = 0
