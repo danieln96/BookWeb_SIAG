@@ -38,7 +38,7 @@ gem 'listen', '~> 3.0'
 # gem 'capistrano-rails', group: :development
 
 
-group :development do
+group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'rails-erd'
