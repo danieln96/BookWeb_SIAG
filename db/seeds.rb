@@ -28,7 +28,7 @@ CSV.foreach('lib/seeds/BookWebUzytkownikKsiazka.csv', { :col_sep => ',' }) do |r
         puts "Zapisano #{t.rate}"
     end
 end
-Utworzenie konta dla administratora
+#Utworzenie konta dla administratora
 a = User.new
 a.email = "admin@example.com"
 a.password = "admos384"
