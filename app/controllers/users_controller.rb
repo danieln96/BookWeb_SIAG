@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     end
     def create
         @user = User.new(user_params)
-        if /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){8,40}$/.match(params[:password])
+        #if /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){8,40}$/ ~= params[:password]
             if @user.save
                 session[:user_id] = @user.id
                 flash[:success] = "Witamy #{@user.username}!"
@@ -15,10 +15,6 @@ class UsersController < ApplicationController
             else
                render 'new' 
             end
-        else
-           flash[:info] = "Hasło musi mieć minimum 8 znaków, jedną dużą literę i jedną cyfrę"
-           redirect_to new_user_path
-        end
     end
    def edit
        
@@ -49,6 +45,9 @@ class UsersController < ApplicationController
     end
     def show
        @opinions = @user.opinions
+    end
+    def search
+        
     end
    private
    def user_params

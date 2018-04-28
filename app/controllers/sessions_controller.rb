@@ -13,8 +13,16 @@ def create
         flash[:success] = "Zostałeś prawidłowo zalogowany"
         redirect_to root_path
     else
-        flash.now[:danger] = "Podałeś błędne dane logowania"
-        render 'new'
+        user = User.find_by(username: params[:session][:email].downcase)
+        if user && user.authenticate(params[:session][:password])
+            session[:user_id] = user.id
+            session[:expires_at] = Time.current + 20.minutes
+            flash[:success] = "Zostałeś prawidłowo zalogowany"
+            redirect_to root_path
+        else
+            flash.now[:danger] = "Podałeś błędne dane logowania"
+            render 'new'
+        end
     end
 end
 def destroy

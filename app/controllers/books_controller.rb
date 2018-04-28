@@ -21,7 +21,7 @@ class BooksController < ApplicationController
        if !@book.opinions.empty?
            @average = 0
            @book.opinions.each { |o| @average += o.rate }
-           @average = @average / @book.opinions.size
+           @average = (@average.to_f / @book.opinions.size).to_f.round(2)
        end
        cookies[:bookid] = @book.id
    end

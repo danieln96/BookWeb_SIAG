@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
   def check_session
-    if session[:user_id]
-      if (session[:expires_at] < Time.current)
+    if session[:user_id] && session[:expires_at]
+      if session[:expires_at] < Time.current
         session[:user_id] = nil
         session[:expires_at] = nil
         flash[:info] = "Sesja wygasła. Zaloguj się ponownie..."
