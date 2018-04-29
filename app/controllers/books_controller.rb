@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
    before_action :require_admin, only: [:destroy, :edit, :update, :new, :create]
    before_action :set_book, only: [:show, :update, :edit, :destroy]
+   before_action :check_book, only: [:create, :update]
    def index
        @books = Book.paginate(page: params[:page], per_page: 10)
    end
@@ -8,13 +9,12 @@ class BooksController < ApplicationController
        @book = Book.new
    end
    def create
-       @book = Book.new(book_param)
-       if @book.save
+        if @book.save
           flash[:success] = "Książka została prawidłowo dodana"
           redirect_to books_path
-       else
+        else
           render 'new'
-       end
+        end
    end
    def show
        @opinion = Opinion.new
@@ -61,6 +61,13 @@ class BooksController < ApplicationController
         if !logged_in? || (logged_in? and !current_user.admin?)
             flash[:danger] = "Tylko admin może zrobić coś takiego"
             redirect_to root_path
+        end
+    end
+    def check_book
+        @book = Book.new(book_param)
+        if Book.where(["title = ? and author = ?", "#{@book.title}", "#{@book.author}"]).exists?
+                flash[:info] = "Taka książka już istnieje"
+                redirect_to(request.env['HTTP_REFERER'])
         end
     end
 end
