@@ -1,0 +1,6 @@
+<% @books.each do |b| %>
+<p>
+    <%= link_to "#{b.title}", book_path(b.id) %> 
+    <%= "<span>#{b.author}</span> <span>#{b.genre}</span>".html_safe %>
+</p>
+<% end %>
