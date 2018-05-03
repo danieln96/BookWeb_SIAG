@@ -7,4 +7,7 @@
     <% else %>
         <div>Użytkownik nie dodał jeszcze opinii</div>
     <% end %>
+    <% if logged_in? && current_user.admin? %>
+        <%= link_to "Usuń", user_path(user.id), method: :delete %>
+    <% end %>
 <% end %>

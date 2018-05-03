@@ -20,6 +20,9 @@ class UsersController < ApplicationController
        
    end
    def destroy
+       if @user.opinions.exists?
+        @user.opinions.destroy_all
+       end
         @user.destroy
         flash[:danger] = "Użytkownik usunięty"
         redirect_to users_path
@@ -47,7 +50,11 @@ class UsersController < ApplicationController
        @opinions = @user.opinions
     end
     def search
-        
+        if params[:search]
+            @user = User.where(username: "#{params[:search]}")
+        else
+           flash[:notice] = "Skorzystaj z formularza" 
+        end
     end
    private
    def user_params
