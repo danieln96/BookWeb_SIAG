@@ -45,7 +45,7 @@ class BooksController < ApplicationController
    end
    def search
       if params[:sort]== "ASC" || params[:sort] == "DESC"
-        @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search]}%").order("#{params[:orders]} #{params[:sort]}")
+        @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip}%").order("#{params[:orders]} #{params[:sort]}")
       else
           flash[:danger] = "Zrobiłeś coś źle"
           redirect_to books_path
