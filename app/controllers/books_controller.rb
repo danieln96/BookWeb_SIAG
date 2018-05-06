@@ -44,11 +44,26 @@ class BooksController < ApplicationController
        end     
    end
    def search
-      if params[:sort]== "ASC" || params[:sort] == "DESC"
-        @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip}%").order("#{params[:orders]} #{params[:sort]}")
+      if !params[:orders]
+          @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip}%")
       else
-          flash[:danger] = "Zrobiłeś coś źle"
-          redirect_to books_path
+          if params[:sort]== "ASC" || params[:sort] == "DESC"
+            @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip}%").order("#{params[:orders]} #{params[:sort]}")
+          else
+              flash[:danger] = "Zrobiłeś coś źle"
+              redirect_to books_path
+          end
+      end
+   end
+   def authors
+      @books = Book.all 
+      @authors = Array.new
+      @books.each do |book|
+         if @authors.include? book.author
+          
+         else
+             @authors << book.author
+         end
       end
    end
    private

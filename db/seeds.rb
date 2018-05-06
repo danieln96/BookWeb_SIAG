@@ -31,7 +31,7 @@ end
 #Utworzenie konta dla administratora
 a = User.new
 a.email = "admin@example.com"
-a.password = "admos384"
+a.password = "Admos384"
 a.username = "admin"
 a.admin = true
 a.save

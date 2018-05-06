@@ -1,0 +1,27 @@
+<div>
+  <% if logged_in? %>
+  <%= link_to "Wyloguj", logout_path, method: :delete, class: "btn btn-xs btn-danger", id: 'logout' %>
+  <%= link_to 'Twój profil', user_path(current_user), class: "btn btn-xs btn-success", id: 'profile' %>
+  <% else %>
+  <%= link_to "Utwórz konto", new_user_path, class: "btn btn-xs btn-success", id: 'register' %>
+  <%= link_to "Logowanie", login_path, class: "btn btn-xs btn-success", id: 'login' %>
+  <% end %>
+  <%= link_to 'Strona główna', root_path, class: "btn btn-xs btn-success", id: 'mainsite' %>
+  <%= link_to "Lista książek", books_path, class: "btn btn-xs btn-success", id: 'books' %>
+  <%= link_to 'Użytkownicy', users_path, class: "btn btn-xs btn-success", id: 'users' %>
+  <%= link_to "Autorzy", authors_path, class: "btn btn-xs btn-success", id: 'authors' %>
+  <% if logged_in? && current_user.admin? %>
+  <%= link_to 'Dodaj książkę', new_book_path, class: "btn btn-xs btn-success", id: 'addbook' %>
+  <% end %>
+</div>
+
+<div class='col-sm-3'>
+  <%= form_tag(books_search_path, method: "post") do %>
+  <%= label(:search, "Szukaj książki") %>
+  <%= text_field_tag :search, params[:search], placeholder: "Tytuł/Autor/Gatunek", class: 'form-control' %>
+  <%= label(:orders, "Sortuj po") %>
+  <%= select_tag "orders", options_for_select([["Tytuł","title"], ["Autor","author"], ["Gatunek", "genre"]], "Książka"), class: 'form-control' %>
+  <%= select_tag 'sort', options_for_select([["Rosnąco", "ASC"],["Malejąco", "DESC"]]), class: 'form-control' %>
+  <%= submit_tag("Szukaj") %>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<% @authors.each do |au| %>
+<div>
+    <h2><%= link_to "Książki autora: #{au}", books_search_path(search: "#{au}") , method: :post %></h2>
+    <% @books.where(author: "#{au}").each do |b| %>
+    <p><%= link_to "#{b.title}", book_path(b.id) %></p>
+    <% end %>
+</div>
+<% end %>

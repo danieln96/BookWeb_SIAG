@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post 'users/search' => 'users#search'
   resources :books
   post 'books/search' => 'books#search'
+  #get 'books/authors' => 'books#authors'
+  get 'authors', to: 'books#authors'
   resources :opinions
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
