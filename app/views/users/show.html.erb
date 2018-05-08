@@ -4,3 +4,7 @@
     <div><%= opinion.rate %>/10</div>
     <div><%= opinion.description %></div>
 <% end %>
+
+<% if logged_in? && current_user.admin? %>
+    <div><%= link_to "Usuń użytkownika", user_path(@user.id), method: :delete, class: "btn btn-xs btn-danger", id: 'delete' %></div>
+<% end %>
