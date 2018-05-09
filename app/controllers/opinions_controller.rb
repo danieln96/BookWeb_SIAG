@@ -7,12 +7,16 @@ class OpinionsController < ApplicationController
        @opinion.user_id = current_user.id
        @opinion.book_id = cookies[:bookid]
        cookies.delete :bookid
-       if @opinion.save
-           flash[:success] = "Opinia została dodana"
-           redirect_to book_path(@opinion.book_id)
+       if !Opinion.where("user_id = ? AND book_id = ?", @opinion.user_id, @opinion.book_id ).exists?
+           if @opinion.save
+               flash[:success] = "Opinia została dodana"
+               redirect_to book_path(@opinion.book_id)
+           else
+               flash[:danger] = "Wystąpił błąd"
+               redirect_to root_path
+           end
        else
-           flash[:danger] = "Wystąpił błąd"
-           redirect_to root_path
+           redirect_to book_path(@opinion.book_id), notice: "Dodałeś już opinię do tej książki"
        end
     end
     def show
