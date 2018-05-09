@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_one    :opinion
+    has_many   :opinions
     
     PASSWORD_FORMAT = /\A
   (?=.{8,})          # Must contain 8 or more characters

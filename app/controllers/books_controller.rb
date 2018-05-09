@@ -4,6 +4,7 @@ class BooksController < ApplicationController
    before_action :check_book, only: [:create, :update]
    def index
        @books = Book.paginate(page: params[:page], per_page: 10)
+       cookies[:lastpage] = params[:page]
    end
    def new
        @book = Book.new

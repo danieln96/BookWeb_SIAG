@@ -23,9 +23,14 @@ class UsersController < ApplicationController
        if @user.opinions.exists?
         @user.opinions.destroy_all
        end
+       if !@user.admin?
         @user.destroy
         flash[:danger] = "Użytkownik usunięty"
         redirect_to users_path
+       else
+        flash[:danger] = "Nie możesz usunąć administratora"
+        redirect_to users_path
+       end
    end
    def update
        if @user.update(user_params)

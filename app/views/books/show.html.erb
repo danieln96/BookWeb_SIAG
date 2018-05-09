@@ -19,5 +19,6 @@
 
 
 
-
-<div><%= link_to "Powrót", url_for(:back), class: "btn btn-xl btn-info", id: 'back' %></div>
+<% if cookies[:lastpage] %>
+<div><%= link_to "Powrót", books_path(:page => cookies[:lastpage]), class: "btn btn-xl btn-info", id: 'back' %></div>
+<% end %>
