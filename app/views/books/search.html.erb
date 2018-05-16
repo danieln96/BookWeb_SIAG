@@ -1,6 +1,18 @@
-<% @books.each do |b| %>
-<p>
-    <%= link_to "#{b.title}", book_path(b.id) %> 
-    <%= "#{b.author} #{b.genre}" %>
-</p>
+<% if !@books.empty? %>
+    <% @books.each do |b| %>
+    <p>
+        <%= link_to "#{b.title}", book_path(b.id) %> 
+        <%= "#{b.author} #{b.genre}" %>
+    </p>
+    <% end %>
+<% else %>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Brak obiektów dla frazy <%= params[:search] %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
 <% end %>

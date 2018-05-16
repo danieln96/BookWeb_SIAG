@@ -4,7 +4,6 @@ class BooksController < ApplicationController
    before_action :check_book, only: [:create, :update]
    def index
        @books = Book.paginate(page: params[:page], per_page: 10)
-       cookies[:lastpage] = params[:page]
    end
    def new
        @book = Book.new
@@ -24,7 +23,7 @@ class BooksController < ApplicationController
            @book.opinions.each { |o| @average += o.rate }
            @average = (@average.to_f / @book.opinions.size).to_f.round(2)
        end
-       cookies[:bookid] = @book.id
+       @lastpage = ((@book.id - Book.first.id + 1) / 10.to_f).ceil
    end
    def edit
    end

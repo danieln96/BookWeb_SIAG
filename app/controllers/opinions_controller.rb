@@ -16,7 +16,8 @@ class OpinionsController < ApplicationController
                redirect_to root_path
            end
        else
-           redirect_to book_path(@opinion.book_id), notice: "Dodałeś już opinię do tej książki"
+           flash[:danger] = "Dodałeś już opinię do tej książki"
+           redirect_to book_path(@opinion.book_id) 
        end
     end
     def show
