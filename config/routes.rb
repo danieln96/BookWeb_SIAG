@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'authors', to: 'books#authors'
   resources :opinions
   get 'login', to: 'sessions#new'
+  get 'api/books/json', to: 'books#getJSON'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end

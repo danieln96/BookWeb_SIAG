@@ -66,6 +66,10 @@ class BooksController < ApplicationController
          end
       end
    end
+   def getJSON
+      @books = Book.all
+      render json: @books.to_json(:include => :opinions)
+   end
    private
    def set_book
       begin
