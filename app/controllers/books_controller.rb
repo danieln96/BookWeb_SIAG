@@ -24,6 +24,7 @@ class BooksController < ApplicationController
            @average = (@average.to_f / @book.opinions.size).to_f.round(2)
        end
        @lastpage = ((@book.id - Book.first.id + 1) / 10.to_f).ceil
+       cookies[:bookid] = @book.id
    end
    def edit
    end
