@@ -1,5 +1,6 @@
 <%= will_paginate %>
 <% @users.each do |user| %>
+<div class="user-<%=user.id%>">
     <div><%= link_to "Użytkownik #{user.username}", user_path(user.id) %></div>
     <% if !user.opinions.empty? %>
         <div><%= "Ostatnia opinia książki #{user.opinions.last.book.title} oceniona na #{user.opinions.last.rate}/10" %> </div>
@@ -9,5 +10,6 @@
     <% end %>
     <% if logged_in? && current_user.admin? %>
         <%= link_to "Usuń", user_path(user.id), method: :delete %>
-    <% end %>
+    <% end %>    
+</div>
 <% end %>

@@ -61,6 +61,14 @@ class UsersController < ApplicationController
            flash[:notice] = "Skorzystaj z formularza" 
         end
     end
+   def getJSON
+      @users = User.all
+      if params[:opinions] && params[:opinions] == "true"
+        render json: @users.to_json(:only => [ :username, :email, :created_at ], :include => :opinions)
+      else
+        render json: @users.to_json(:only => [ :username, :email, :created_at ])
+      end
+   end
    private
    def user_params
       params.require(:user).permit(:username, :email, :password) 

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :opinions
   get 'login', to: 'sessions#new'
   get 'api/books/json', to: 'books#getJSON'
+  get 'api/users/json', to: 'users#getJSON'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end
