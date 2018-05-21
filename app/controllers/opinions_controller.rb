@@ -12,8 +12,8 @@ class OpinionsController < ApplicationController
                flash[:success] = "Opinia została dodana"
                redirect_to book_path(@opinion.book_id)
            else
-               flash[:danger] = "Wystąpił błąd"
-               redirect_to root_path
+               flash[:danger] = "Wymagane jest podanie wszystkich opcji. Opis może mieć max 1000znaków"
+               redirect_to book_path(@opinion.book_id)
            end
        else
            flash[:danger] = "Dodałeś już opinię do tej książki"
@@ -26,11 +26,15 @@ class OpinionsController < ApplicationController
     end
     def destroy
         @opinion = Opinion.find(params[:id])
-        bid = @opinion.book_id
-        @opinion.destroy
-        flash[:danger] = "Usunięto opinię"
-        redirect_to book_path(bid)
-        
+        if current_user.id == @opinion.user_id || current_user.admin?
+            bid = @opinion.book_id
+            @opinion.destroy
+            flash[:danger] = "Usunięto opinię"
+            redirect_to book_path(bid)
+        else
+            flash[:danger] = "Musisz być właścicielem opinii"
+            redirect_to book_path(@opinion.book_id)
+        end
     end
     def index
         @opinions = Opinion.where(user_id: session[:user_id])
