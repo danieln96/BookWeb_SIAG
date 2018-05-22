@@ -37,6 +37,7 @@ class BooksController < ApplicationController
        end
    end
    def destroy
+       @book.opinions.destroy_all
        if @book.destroy
          flash[:danger] = "Pozyzja została usunięta"
          redirect_to books_path
