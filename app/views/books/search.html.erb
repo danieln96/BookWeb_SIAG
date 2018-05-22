@@ -3,6 +3,9 @@
     <p>
         <%= link_to "#{b.title}", book_path(b.id) %> 
         <%= "#{b.author} #{b.genre}" %>
+        <% if logged_in? && current_user.admin? %>
+            <%= link_to 'Usuń', book_path(b.id), method: :delete, class: "btn btn-xs btn-danger" %>
+        <% end %>
     </p>
     <% end %>
 <% else %>
