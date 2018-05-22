@@ -2,7 +2,7 @@
 <% @users.each do |user| %>
 <div class="user-<%=user.id%>">
     <div><%= link_to "Użytkownik #{user.username}", user_path(user.id) %></div>
-    <% if !user.opinions.any? %>
+    <% if user.opinions.any? %>
         <div><%= "Ostatnia opinia książki #{user.opinions.last.book.title} oceniona na #{user.opinions.last.rate}/10" %> </div>
         <div><%= "#{user.opinions.last.description}" %></div>
     <% else %>
