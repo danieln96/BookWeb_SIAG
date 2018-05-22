@@ -6,7 +6,7 @@
 
 
 <% @book.opinions.each do |opinion| %>
-<div>
+<div class='row'>
     <% if opinion.description %>
         <%= "#{opinion.user.username} ocenił #{opinion.rate}/10: #{opinion.description}" %>
         <% if  current_user && (current_user.admin? || current_user.id == opinion.user_id) %>
