@@ -20,7 +20,28 @@ hah {
 {
     background-color: #111111;
     color: white;
-    position: absolute;
-    bottom: 0px;
+}
+
+
+.aboutProject
+{
+    height: 250px;
     width: 100%;
+    background-color: #eeeeee;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.about_header
+{
+    font-family: "Helvetica Neue";
+    font-size: 40px;
+    text-shadow: rgba(0,0,0,.6);
+}
+
+.about_text
+{
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,.6);
 }

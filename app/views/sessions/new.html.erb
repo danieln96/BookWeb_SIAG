@@ -1,4 +1,6 @@
-<h1 align="center">Logowanie</h1>
+<div class="jumbotron text-center">
+<h1>Logowanie</h1>
+</div>
 <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
     <div class="form-group">
         <div class="control-label col-sm-2">
@@ -22,6 +24,6 @@
         </div>
     </div>
 <% end %>
-<div class="col-xs-4 col-xs-offset-4">
+<div class="jumbotron text-center">
     [ <%= link_to "Powrót", root_path %> ]
 </div>
