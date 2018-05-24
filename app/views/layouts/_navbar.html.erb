@@ -1,38 +1,42 @@
-<!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">BookWeb</a>
+<div style="background-color:#111111;">
+    <nav class="navbar navbar-inverse" style="margin:0;border:1;background-color:#111111;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="background-color:#111111;">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">BookWeb</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-          <li><%= link_to 'Strona główna', root_path, id: 'mainsite' %></a></li>
-            <li><a href="books">Lista Książek</a></li>
-            <li><a href="authors">Autorzy</a></li>
-           <li><a href="users">Użytkownicy</a></li>
-           
-           <% if logged_in? %>
-  
-  
-  <li><%= link_to "Wyloguj", logout_path, method: :delete, id: 'logout' %></li>
-           <li><%= link_to 'Twój profil', user_path(current_user), id: 'profile' %></li>
-  <% else %>
-   <li><a href="login">Logowanie</a></li>
-           <li><a href="users/new">Utwórz Konto</a></li>
- 
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse" style="background-color:#111111;">
+            <ul class="nav navbar-nav" style="background-color:#111111;">
+                <li class="active"><%= link_to 'Strona główna', root_path, id: 'mainsite' %></li>
+                <li>  <%= link_to "Lista książek", books_path, id: 'books' %></li>
+                <li>  <%= link_to 'Użytkownicy', users_path, id: 'users' %></li>
+                <li>  <%= link_to "Autorzy", authors_path, id: 'authors' %></li>
+                <% if logged_in? && current_user.admin? %>
+  <li><%= link_to 'Dodaj książkę', new_book_path, id: 'addbook' %></li>
   <% end %>
-          
-          </ul>
-          
-        </div><!--/.nav-collapse -->
-      </div>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="">Szukaj</a></li>
+                 <% if logged_in? %>
+  <li><%= link_to "Wyloguj", logout_path, method: :delete, id: 'logout' %></li>
+ <li> <%= link_to 'Twój profil', user_path(current_user), id: 'profile' %></li>
+  <% else %>
+ <li> <%= link_to "Utwórz konto", new_user_path,  id: 'register' %></li>
+ <li> <%= link_to "Logowanie", login_path, id: 'login' %></li>
+  <% end %>
+            </ul>
+        </div>
     </nav>
+</div>
+
+
 <!--/
 <div>
   <% if logged_in? %>
@@ -51,7 +55,8 @@
   <% end %>
 </div>
 
--->
+
+
 
 <div class='col-sm-3'>
   <%= form_tag(books_search_path, method: "post") do %>
@@ -63,3 +68,5 @@
   <%= submit_tag("Szukaj") %>
   <% end %>
 </div>
+-->
+
