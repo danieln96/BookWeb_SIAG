@@ -1,14 +1,15 @@
 
-<div align="center">
-<div class='col-sm-3'>
+<div class="row" id="SectionID" style="padding:0px; width:100%;">
+<div style="width:500px; margin:0 auto; padding:0px;">
+<div style="text-align: center; margin:90px; padding:0px;>
   <%= form_tag(books_search_path, method: "post") do %>
   <%= label(:search, "Szukaj książki") %>
   <%= text_field_tag :search, params[:search], placeholder: "Tytuł/Autor/Gatunek", class: 'form-control' %>
   <%= label(:orders, "Sortuj po") %>
   <%= select_tag "orders", options_for_select([["Tytuł","title"], ["Autor","author"], ["Gatunek", "genre"]], "Książka"), class: 'form-control' %>
   <%= select_tag 'sort', options_for_select([["Rosnąco", "ASC"],["Malejąco", "DESC"]]), class: 'form-control' %>
-  <%= submit_tag("Szukaj") %>
+  <%= submit_tag("Szukaj" ) %>
   <% end %>
 </div>
-
+</div>
 </div>

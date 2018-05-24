@@ -1,3 +1,30 @@
+<head>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-2.0.2.js'></script>
+<script type='text/javascript'
+  src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+<script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){<!--  w w w  .  java 2  s  . c  o  m-->
+$(function() {
+    var navbarOffset = $(".navbar").height() + 10;
+    var shiftWindow = function() { scrollBy(0, -navbarOffset); };
+    window.addEventListener("hashchange", shiftWindow);
+    if (window.location.hash) shiftWindow();
+});
+$("a[href^='#']").on('click', function(e) {
+   e.preventDefault();
+   var hash = this.hash;
+   $('html, body').animate({
+       scrollTop: $(this.hash).offset().top - 60
+     }, 300, function(){
+         window.location.hash = hash;
+     });
+});
+});//]]>  
+</script>
+
+</head>
+
 <div style="background-color:#111111;">
     <nav class="navbar navbar-inverse" style="margin:0;border:1;background-color:#111111;">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,7 +50,7 @@
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
-            <li><a href="">Szukaj</a></li>
+            <li><a href="#SectionID">Szukaj książki</a></li>
                  <% if logged_in? %>
   <li><%= link_to "Wyloguj", logout_path, method: :delete, id: 'logout' %></li>
  <li> <%= link_to 'Twój profil', user_path(current_user), id: 'profile' %></li>
