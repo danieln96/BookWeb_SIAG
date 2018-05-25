@@ -20,13 +20,17 @@ hah {
 {
     background-color: #111111;
     color: white;
+    text-align: center;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 
 .aboutProject
 {
     width: 100%;
-    background-color: #eeeeee;
     padding-left: 15%;
     padding-right: 15%;
 }

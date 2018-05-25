@@ -1,6 +1,6 @@
 
 
-<div class='col-sm-3'>
+<div class="col-sm-3">
   <%= form_tag(books_search_path, method: "post") do %>
   <%= label(:search, "Szukaj książki") %>
   <%= text_field_tag :search, params[:search], placeholder: "Tytuł/Autor/Gatunek", class: 'form-control' %>

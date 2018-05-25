@@ -1,29 +1,29 @@
-<div class="jumbotron text-center">
+<div class="text-center">
 <h1>Logowanie</h1>
 </div>
 <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
     <div class="form-group">
-        <div class="control-label col-sm-2">
+        <div class="control-label col-sm-5">
             <label>Email/Login</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-3">
             <%= f.text_field :email, class: "form-control", placeholder: "Podaj email/login", autofocus: true, id: "email" %>
         </div>
     </div>
     <div class="form-group">
-        <div class="control-label col-sm-2">
+        <div class="control-label col-sm-5">
             <label>Hasło</label>
         </div>
-        <div class="col-sm-8">
-            <%= f.password_field :password, class: "form-control", autocomplete: "off", id: "password" %>
+        <div class="col-sm-3">
+            <%= f.password_field :password, class: "form-control", placeholder: "Podaj hasło", autocomplete: "off", id: "password" %>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="text-center">
             <%= f.button "Zaloguj", class: 'btn btn-primary btn-lg', id: "submit" %>
         </div>
     </div>
 <% end %>
-<div class="jumbotron text-center">
+<div class="text-center">
     [ <%= link_to "Powrót", root_path %> ]
 </div>
