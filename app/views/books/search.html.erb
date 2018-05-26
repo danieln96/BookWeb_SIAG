@@ -1,3 +1,6 @@
+<div id="divparams" style="display: none;">
+    <%= "#{params[:orders]},#{params[:sort]}" %>
+</div>
 <% if !@books.empty? %>
     <% @books.each do |b| %>
     <p>
