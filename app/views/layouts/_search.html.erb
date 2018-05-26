@@ -1,7 +1,7 @@
 
 <div class="row" id="SectionID" style="padding:0px; width:100%;">
 <div style="width:500px; margin:0 auto; padding:0px;">
-<div style="text-align: center; margin:90px; padding:0px;>
+<div style="text-align: center; margin:90px; padding:0px;/">
   <%= form_tag(books_search_path, method: "post") do %>
   <%= label(:search, "Szukaj książki") %>
   <%= text_field_tag :search, params[:search], placeholder: "Tytuł/Autor/Gatunek", class: 'form-control' %>
