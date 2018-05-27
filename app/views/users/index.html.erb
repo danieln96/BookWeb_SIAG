@@ -1,3 +1,88 @@
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+
+
+<div class="container">
+
+	<div class="row">
+		<section class="content">
+		
+			<div class="col-md-8 col-md-offset-2">
+			<%= will_paginate %>
+				<% @users.each do |user| %>
+
+				<div class="panel panel-default">
+				
+					<div class="panel-body">
+					
+						<div class="table-container">
+						
+
+							<table class="table table-filter">
+							
+								<tbody>
+								
+								
+									<tr >
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://www.bookd.online/assets/app/images/icon/user-icon.png" class="media-photo">
+												</a>
+												<div class="media-body">
+													<h4 class="title">
+														<%= link_to "Użytkownik #{user.username}", user_path(user.id) %>
+													</h4>
+													   <p class="summary">
+													       <% if !user.opinions.empty? %>
+                                                            <div><%= "Ostatnia opinia książki: #{user.opinions.last.book.title}" %></div>
+                                                            <div><%= "Oceniona na: #{user.opinions.last.rate}/10" %> </div>
+                                                            <div ><%= " Komentarz: #{user.opinions.last.description}" %></div>
+                                                            <% else %>
+                                                                 <%= "Użytkownik nie dodał jeszcze opinii" %>
+                                                            <% end %>
+    <% if logged_in? && current_user.admin? %>
+        <%= link_to "Usuń", user_path(user.id), method: :delete %>
+    <% end %>  
+    					
+												   	</p>
+										
+												</div>
+										
+											</div>
+											
+										</td>
+										
+									
+									</tr>
+									
+								
+									
+								</tbody>
+								
+							
+							</table>
+								
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<% end %>
+				
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+
+<!--
+
 <%= will_paginate %>
 <% @users.each do |user| %>
 <div class="user-<%=user.id%>">
@@ -13,3 +98,5 @@
     <% end %>    
 </div>
 <% end %>
+
+ -->

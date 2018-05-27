@@ -1,3 +1,81 @@
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<p></p>
+
+<div class="container">
+
+	<div class="row">
+		<section class="content">
+		
+			<div class="col-md-8 col-md-offset-2">
+			
+			 <% @authors.each do |au| %>
+
+				<div class="panel panel-default">
+				
+					<div class="panel-body">
+					
+						<div class="table-container">
+						
+
+							<table class="table table-filter">
+							
+								<tbody>
+								
+								
+									<tr >
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://png.icons8.com/ios/2x/book.png" class="media-photo">
+												</a>
+												<div class="media-body">
+													<h4 class="title">
+														<%= link_to "Książki autora: #{au}", books_search_path(search: "#{au}") , method: :post %>
+													</h4>
+													   <% @books.where(author: "#{au}").each do |b| %>
+													   <p class="summary">
+
+    					<%= link_to "#{b.title}", book_path(b.id) %>
+												   	</p>
+										<% end %>
+												</div>
+										
+											</div>
+											
+										</td>
+										
+									
+									</tr>
+									
+								
+									
+								</tbody>
+								
+							
+							</table>
+								
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<% end %>
+				
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+
+
+<!--
+
 <% @authors.each do |au| %>
 <div>
     <h2><%= link_to "Książki autora: #{au}", books_search_path(search: "#{au}") , method: :post %></h2>
@@ -6,3 +84,5 @@
     <% end %>
 </div>
 <% end %>
+
+-->

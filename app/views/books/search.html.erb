@@ -1,7 +1,98 @@
+
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<p></p>
+
 <div id="divparams" style="display: none;">
     <%= "#{params[:orders]},#{params[:sort]}" %>
 </div>
 <% if !@books.empty? %>
+
+<div class="container">
+
+	<div class="row">
+		<section class="content">
+		
+			<div class="col-md-8 col-md-offset-2">
+			
+			 <% @books.each do |b| %>
+
+				<div class="panel panel-default">
+				
+					<div class="panel-body">
+					
+						<div class="table-container">
+						
+
+							<table class="table table-filter">
+							
+								<tbody>
+								
+								
+									<tr >
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://png.icons8.com/ios/2x/book.png" class="media-photo">
+												</a>
+												<div class="media-body">
+													<h4 class="title">
+														<%= link_to "#{b.title}", book_path(b.id) %>      
+													</h4>
+													   
+													   <p class="summary">
+<div><%= "#{b.author}" %></div> <div><%= "#{b.genre}" %></div>
+    					
+        <% if logged_in? && current_user.admin? %>
+            <%= link_to 'Usuń', book_path(b.id), method: :delete, class: "btn btn-xs btn-danger" %>
+        <% end %>
+												   	</p>
+										
+												</div>
+										
+											</div>
+											
+										</td>
+										
+									
+									</tr>
+									
+								
+									
+								</tbody>
+								
+							
+							</table>
+								
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<% end %>
+				
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
     <% @books.each do |b| %>
     <p>
         <%= link_to "#{b.title}", book_path(b.id) %> 
@@ -11,6 +102,9 @@
         <% end %>
     </p>
     <% end %>
+    
+    -->
+    
 <% else %>
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">

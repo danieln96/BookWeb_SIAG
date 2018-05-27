@@ -1,3 +1,84 @@
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<p></p>
+
+<div class="container">
+	<div class="row">
+
+		<section class="content">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+								
+								
+									<tr >
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://png.icons8.com/ios/2x/book.png" class="media-photo">
+												</a>
+												<div class="media-body">
+													<h4 class="title">
+														<div><%= @book.title %></div>
+													</h4>
+													<p class="summary">
+													<div><%= @book.author %></div>
+<div><%= @book.genre %></div>
+<div><%= "Średnia #{@average}" %></div>
+<%= render partial: "form", locals: {opinion: @opinion} %>
+
+													</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									
+									<% @book.opinions.each do |opinion| %>
+									<tr >
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://cdn.ning.com/wp-content/themes/ningblog/assets/img/ui/blog/icons/review-icon.png" class="media-photo">
+												</a>
+												<div class="media-body">
+													
+													<p class="summary">
+													
+													 <% if opinion.description %>
+        <%= "#{opinion.user.username} ocenił #{opinion.rate}/10: #{opinion.description}" %>
+        <% if  current_user && (current_user.admin? || current_user.id == opinion.user_id) %>
+            <%= link_to 'Usuń', opinion_path(opinion.id), method: :delete, class: "btn btn-xs btn-danger" %>
+        <% end %>
+    <% end %>
+													
+													</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									
+									<% end %>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+<!--
+
 <div><%= @book.title %></div>
 <div><%= @book.author %></div>
 <div><%= @book.genre %></div>
@@ -19,3 +100,5 @@
 
 
 <div><%= link_to "Powrót", books_path(page: @lastpage), class: "btn btn-xl btn-info", id: 'back' %></div>
+
+-->
