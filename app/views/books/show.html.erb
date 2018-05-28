@@ -32,8 +32,27 @@
 													<div><%= @book.author %></div>
 <div><%= @book.genre %></div>
 <div><%= "Średnia #{@average}" %></div>
-<%= render partial: "form", locals: {opinion: @opinion} %>
 
+
+													</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									
+									<tr >
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://cdn.ning.com/wp-content/themes/ningblog/assets/img/ui/blog/icons/review-icon.png" class="media-photo">
+												</a>
+												<div class="media-body">
+													
+													<p class="summary">
+													
+													 
+<%= render partial: "form", locals: {opinion: @opinion} %>
+													
 													</p>
 												</div>
 											</div>
