@@ -39,7 +39,7 @@
 											</div>
 										</td>
 									</tr>
-									
+									<% if current_user %>
 									<tr >
 										<td>
 											<div class="media">
@@ -58,7 +58,7 @@
 											</div>
 										</td>
 									</tr>
-									
+									<% end %>
 									<% @book.opinions.each do |opinion| %>
 									<tr >
 										<td>
