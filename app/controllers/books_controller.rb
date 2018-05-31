@@ -23,7 +23,7 @@ class BooksController < ApplicationController
            @book.opinions.each { |o| @average += o.rate }
            @average = (@average.to_f / @book.opinions.size).to_f.round(2)
        end
-       @lastpage = ((@book.id - Book.first.id + 1) / 5.to_f).ceil
+       @lastpage = ((@book.id - Book.first.id + 1) / 10.to_f).ceil
        cookies[:bookid] = @book.id
    end
    def edit
@@ -47,10 +47,10 @@ class BooksController < ApplicationController
    end
    def search
       if !params[:orders]
-          @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip}%")
+          @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip.downcase}%")
       else
           if params[:sort]== "ASC" || params[:sort] == "DESC"
-            @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip}%").order("#{params[:orders]} #{params[:sort]}")
+            @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip.downcase}%").order("#{params[:orders]} #{params[:sort]}")
           else
               flash[:danger] = "Zrobiłeś coś źle"
               redirect_to books_path

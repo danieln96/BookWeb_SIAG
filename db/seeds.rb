@@ -20,7 +20,7 @@ CSV.foreach('lib/seeds/BookWebBazaUzytkownikow.csv', { :col_sep => ',' }) do |ro
 end
 CSV.foreach('lib/seeds/BookWebUzytkownikKsiazka.csv', { :col_sep => ',' }) do |row|
    t = Opinion.new
-   t.rate = row[7]#3
+   t.rate = row[3]#3
    t.description = row[4]
    t.user_id = row[6]
    t.book_id = row[2] #2
