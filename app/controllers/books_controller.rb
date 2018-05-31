@@ -39,7 +39,7 @@ class BooksController < ApplicationController
    def destroy
        @book.opinions.destroy_all
        if @book.destroy
-         flash[:danger] = "Pozyzja została usunięta"
+         flash[:danger] = "Pozycja została usunięta"
          redirect_to books_path
        else
           redirect_to books_path
@@ -67,6 +67,7 @@ class BooksController < ApplicationController
              @authors << book.author
          end
       end
+      @authors.sort
    end
    def getJSON
       @books = Book.all

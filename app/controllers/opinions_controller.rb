@@ -6,10 +6,6 @@ class OpinionsController < ApplicationController
        book_id = cookies[:bookid]
        cookies.delete :bookid
        @opinion = Opinion.new(opinion_param)
-       if !@opinion.rate.between?(1,5)
-           flash[:danger] = "Możesz podać wartości od 1 do 5 #{params[:rate]}"
-           redirect_to book_path(book_id) and return
-       end
        @opinion.user_id = current_user.id
        @opinion.book_id = book_id
        if !Opinion.where("user_id = ? AND book_id = ?", @opinion.user_id, @opinion.book_id ).exists?
@@ -17,7 +13,7 @@ class OpinionsController < ApplicationController
                flash[:success] = "Opinia została dodana"
                redirect_to book_path(@opinion.book_id)
            else
-               flash[:danger] = "Wymagane jest podanie wszystkich opcji. Opis może mieć max 1000znaków"
+               flash[:danger] = "Wymagane jest podanie wszystkich opcji. Opis może mieć max 1000 znaków. Wartość oceny od 1 do 5."
                redirect_to book_path(@opinion.book_id)
            end
        else
