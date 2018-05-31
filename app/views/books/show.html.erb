@@ -71,7 +71,7 @@
 													<p class="summary">
 													
 													 <% if opinion.description %>
-        <%= "#{opinion.user.username} ocenił #{opinion.rate}/10: #{opinion.description}" %>
+        <%= "#{opinion.user.username} ocenił #{opinion.rate}/5: #{opinion.description}" %>
         <% if  current_user && (current_user.admin? || current_user.id == opinion.user_id) %>
             <%= link_to 'Usuń', opinion_path(opinion.id), method: :delete, class: "btn btn-xs btn-danger" %>
         <% end %>

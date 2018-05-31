@@ -3,10 +3,15 @@ class OpinionsController < ApplicationController
        @opinion  = Opinion.new 
     end
     def create
-       @opinion = Opinion.new(opinion_param)
-       @opinion.user_id = current_user.id
-       @opinion.book_id = cookies[:bookid]
+       book_id = cookies[:bookid]
        cookies.delete :bookid
+       @opinion = Opinion.new(opinion_param)
+       if !@opinion.rate.between?(1,5)
+           flash[:danger] = "Możesz podać wartości od 1 do 5 #{params[:rate]}"
+           redirect_to book_path(book_id) and return
+       end
+       @opinion.user_id = current_user.id
+       @opinion.book_id = book_id
        if !Opinion.where("user_id = ? AND book_id = ?", @opinion.user_id, @opinion.book_id ).exists?
            if @opinion.save
                flash[:success] = "Opinia została dodana"
