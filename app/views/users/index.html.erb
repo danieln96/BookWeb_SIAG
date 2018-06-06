@@ -39,7 +39,7 @@
 													   <p class="summary">
 													       <% if !user.opinions.empty? %>
                                                             <div><%= "Ostatnia opinia książki: #{user.opinions.last.book.title}" %></div>
-                                                            <div><%= "Oceniona na: #{user.opinions.last.rate}/10" %> </div>
+                                                            <div><%= "Oceniona na: #{user.opinions.last.rate}/5" %> </div>
                                                             <div ><%= " Komentarz: #{user.opinions.last.description}" %></div>
                                                             <% else %>
                                                                  <%= "Użytkownik nie dodał jeszcze opinii" %>

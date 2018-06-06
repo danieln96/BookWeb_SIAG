@@ -47,10 +47,10 @@ class BooksController < ApplicationController
    end
    def search
       if !params[:orders]
-          @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip.downcase}%")
+          @books = Book.where('LOWER(title) LIKE :search OR LOWER(author) LIKE :search OR LOWER(genre) LIKE :search', search: "%#{params[:search].strip.downcase}%")
       else
           if params[:sort]== "ASC" || params[:sort] == "DESC"
-            @books = Book.where('title LIKE :search OR author LIKE :search OR genre LIKE :search', search: "%#{params[:search].strip.downcase}%").order("#{params[:orders]} #{params[:sort]}")
+            @books = Book.where('LOWER(title) LIKE :search OR LOWER(author) LIKE :search OR LOWER(genre) LIKE :search', search: "%#{params[:search].strip.downcase}%").order("#{params[:orders]} #{params[:sort]}")
           else
               flash[:danger] = "Zrobiłeś coś źle"
               redirect_to books_path
@@ -67,7 +67,7 @@ class BooksController < ApplicationController
              @authors << book.author
          end
       end
-      @authors.sort
+      @authors.sort!
    end
    def getJSON
       @books = Book.all
