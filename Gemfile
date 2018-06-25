@@ -28,7 +28,7 @@ gem 'bcrypt', '~> 3.1.11'
 
 gem 'will_paginate', '>= 3.1.1'
 gem 'bootstrap-will_paginate', '0.0.10'
-gem 'bootsnap', '1.2.0'
+gem 'bootsnap', require: false
 gem 'listen', '~> 3.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -39,7 +39,7 @@ gem 'listen', '~> 3.0'
 
 group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0'
   gem 'rails-erd'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

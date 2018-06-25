@@ -1,3 +1,4 @@
+require 'net/http'
 class BooksController < ApplicationController
    before_action :require_admin, only: [:destroy, :edit, :update, :new, :create]
    before_action :set_book, only: [:show, :update, :edit, :destroy]
@@ -23,8 +24,25 @@ class BooksController < ApplicationController
            @book.opinions.each { |o| @average += o.rate }
            @average = (@average.to_f / @book.opinions.size).to_f.round(2)
        end
-       @lastpage = ((@book.id - Book.first.id + 1) / 10.to_f).ceil
+       @lastpage = (@book.position / 10.to_f).ceil
        cookies[:bookid] = @book.id
+       if logged_in?
+         url = URI("http://bookrater-env.fip3fudrqp.eu-west-1.elasticbeanstalk.com/?query={ predictedRatings(users: #{current_user.id}, books: #{@book.id}) }")
+         response = Net::HTTP.get_response(url)
+           begin
+             data = JSON.parse(response.body)
+             if data['errors']
+               @rate = "Wystąpił błąd"
+             else
+               @rate = data['data']['predictedRatings'][0]
+               @rate = "#{@rate.round(3)}/5"
+             end
+           rescue
+             @rate = "Błąd serwera"
+           ensure
+
+           end
+     end
    end
    def edit
    end
@@ -43,7 +61,7 @@ class BooksController < ApplicationController
          redirect_to books_path
        else
           redirect_to books_path
-       end     
+       end
    end
    def search
       if !params[:orders]
@@ -58,11 +76,11 @@ class BooksController < ApplicationController
       end
    end
    def authors
-      @books = Book.all 
+      @books = Book.all
       @authors = Array.new
       @books.each do |book|
          if @authors.include? book.author
-          
+
          else
              @authors << book.author
          end
@@ -81,7 +99,7 @@ class BooksController < ApplicationController
          flash[:danger] = "Coś sknociłeś"
          redirect_to root_path
       ensure
-         
+
       end
    end
    def book_param

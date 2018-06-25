@@ -16,8 +16,8 @@
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
-								
-								
+
+
 									<tr >
 										<td>
 											<div class="media">
@@ -32,6 +32,7 @@
 													<div><%= @book.author %></div>
 <div><%= @book.genre %></div>
 <div><%= "Średnia #{@average}" %></div>
+<div><%= "Przewidywana: #{@rate}" %></div>
 
 
 													</p>
@@ -47,12 +48,12 @@
 													<img src="https://cdn.ning.com/wp-content/themes/ningblog/assets/img/ui/blog/icons/review-icon.png" class="media-photo">
 												</a>
 												<div class="media-body">
-													
+
 													<p class="summary">
-													
-													 
+
+
 <%= render partial: "form", locals: {opinion: @opinion} %>
-													
+
 													</p>
 												</div>
 											</div>
@@ -67,24 +68,24 @@
 													<img src="https://cdn.ning.com/wp-content/themes/ningblog/assets/img/ui/blog/icons/review-icon.png" class="media-photo">
 												</a>
 												<div class="media-body">
-													
+
 													<p class="summary">
-													
+
 													 <% if opinion.description %>
         <%= "#{opinion.user.username} ocenił #{opinion.rate}/5: #{opinion.description}" %>
         <% if  current_user && (current_user.admin? || current_user.id == opinion.user_id) %>
             <%= link_to 'Usuń', opinion_path(opinion.id), method: :delete, class: "btn btn-xs btn-danger" %>
         <% end %>
     <% end %>
-													
+
 													</p>
 												</div>
 											</div>
 										</td>
 									</tr>
-									
+
 									<% end %>
-									
+<div><%= link_to "Powrót", books_path(page: @lastpage), class: "btn btn-xl btn-info", id: 'back' %></div>
 								</tbody>
 							</table>
 						</div>
@@ -92,7 +93,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 	</div>
 </div>
 
@@ -118,5 +119,3 @@
 
 
 -->
-
-<div><%= link_to "Powrót", books_path(page: @lastpage), class: "btn btn-xl btn-info", id: 'back' %></div>

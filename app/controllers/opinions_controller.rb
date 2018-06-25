@@ -1,6 +1,7 @@
+require 'net/http'
 class OpinionsController < ApplicationController
     def new
-       @opinion  = Opinion.new 
+       @opinion  = Opinion.new
     end
     def create
        book_id = cookies[:bookid]
@@ -10,19 +11,19 @@ class OpinionsController < ApplicationController
        @opinion.book_id = book_id
        if !Opinion.where("user_id = ? AND book_id = ?", @opinion.user_id, @opinion.book_id ).exists?
            if @opinion.save
-               flash[:success] = "Opinia została dodana"
-               redirect_to book_path(@opinion.book_id)
+             retrain_model
+
            else
                flash[:danger] = "Wymagane jest podanie wszystkich opcji. Opis może mieć max 1000 znaków. Wartość oceny od 1 do 5."
                redirect_to book_path(@opinion.book_id)
            end
        else
            flash[:danger] = "Dodałeś już opinię do tej książki"
-           redirect_to book_path(@opinion.book_id) 
+           redirect_to book_path(@opinion.book_id)
        end
     end
     def show
-       @opinions = Opinion.where(book_id: @book.id) 
+       @opinions = Opinion.where(book_id: @book.id)
        @opinions = @opinions.paginate(page: params[:page], per_page: 3)
     end
     def destroy
@@ -42,6 +43,21 @@ class OpinionsController < ApplicationController
     end
     private
     def opinion_param
-        params.require(:opinion).permit(:description, :rate) 
+        params.require(:opinion).permit(:description, :rate)
+    end
+    def retrain_model
+      @opinions = Opinion.all
+      o = []
+      b = []
+      u = []
+      @opinions.each do |opinion|
+        o << opinion.rate
+        b << opinion.book_id
+        u << opinion.user_id
+      end
+      url = URI("http://bookrater-env.fip3fudrqp.eu-west-1.elasticbeanstalk.com/?query=mutation {retrain(users: #{u}, books: #{b}, ratings: #{o})}")
+        response = Net::HTTP.get_response(url)
+        flash[:success] = "Opinia została dodana ..."
+        redirect_to book_path(@opinion.book_id)
     end
 end
